@@ -1,8 +1,9 @@
 FROM node:latest
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
-COPY package.json /usr/src/app/
+LABEL name "bocajs"
+RUN mkdir /app
+WORKDIR /app
+COPY app/package*.json /app
 RUN npm install
-COPY ./app/* /usr/src/app
-EXPOSE 5000
-CMD [ “npm”, “start” ]
+COPY app/* /app/
+EXPOSE 80
+CMD ["npm", "start"]
